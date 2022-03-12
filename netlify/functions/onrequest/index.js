@@ -18,7 +18,7 @@ async function handler(event) {
     // Read more: https://www.11ty.dev/docs/config/#data-filter-selectors
 
     return {
-      statusCode: 200,
+     statusCode: 200,
       headers: {
         "Content-Type": "text/html; charset=UTF-8",
       },
