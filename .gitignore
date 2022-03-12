@@ -1,0 +1,10 @@
+# Node
+node_modules
+package-lock.json
+
+# Eleventy
+_site
+netlify/functions/onrequest/**
+!netlify/functions/onrequest/**/index.js
+# Local Netlify folder
+.netlify
