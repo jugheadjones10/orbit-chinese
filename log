@@ -1,0 +1,96 @@
+[11ty] Serverless: 1 file bundled to ./netlify/functions/onrequest.
+[11ty] Copied 2 files / Wrote 0 files in 0.13 seconds (v1.0.0)
+[11ty] Watching…
+[Browsersync] Access URLs:
+ ------------------------------------
+    Local: http://localhost:8081
+ External: http://158.247.193.21:8081
+ ------------------------------------
+[Browsersync] Serving files from: _site
+[
+  GoogleSpreadsheetRow {
+    _sheet: GoogleSpreadsheetWorksheet {
+      _spreadsheet: [GoogleSpreadsheet],
+      _headerRowIndex: 1,
+      _rawProperties: [Object],
+      _cells: [],
+      _rowMetadata: [],
+      _columnMetadata: [],
+      headerValues: [Array]
+    },
+    _rowNumber: 2,
+    _rawData: [ '无缘无故' ],
+    '专心致志': [Getter/Setter]
+  },
+  GoogleSpreadsheetRow {
+    _sheet: GoogleSpreadsheetWorksheet {
+      _spreadsheet: [GoogleSpreadsheet],
+      _headerRowIndex: 1,
+      _rawProperties: [Object],
+      _cells: [],
+      _rowMetadata: [],
+      _columnMetadata: [],
+      headerValues: [Array]
+    },
+    _rowNumber: 3,
+    _rawData: [ '语重心长' ],
+    '专心致志': [Getter/Setter]
+  },
+  GoogleSpreadsheetRow {
+    _sheet: GoogleSpreadsheetWorksheet {
+      _spreadsheet: [GoogleSpreadsheet],
+      _headerRowIndex: 1,
+      _rawProperties: [Object],
+      _cells: [],
+      _rowMetadata: [],
+      _columnMetadata: [],
+      headerValues: [Array]
+    },
+    _rowNumber: 4,
+    _rawData: [ '狂风暴雨' ],
+    '专心致志': [Getter/Setter]
+  },
+  GoogleSpreadsheetRow {
+    _sheet: GoogleSpreadsheetWorksheet {
+      _spreadsheet: [GoogleSpreadsheet],
+      _headerRowIndex: 1,
+      _rawProperties: [Object],
+      _cells: [],
+      _rowMetadata: [],
+      _columnMetadata: [],
+      headerValues: [Array]
+    },
+    _rowNumber: 5,
+    _rawData: [ '勃勃生机' ],
+    '专心致志': [Getter/Setter]
+  },
+  GoogleSpreadsheetRow {
+    _sheet: GoogleSpreadsheetWorksheet {
+      _spreadsheet: [GoogleSpreadsheet],
+      _headerRowIndex: 1,
+      _rawProperties: [Object],
+      _cells: [],
+      _rowMetadata: [],
+      _columnMetadata: [],
+      headerValues: [Array]
+    },
+    _rowNumber: 6,
+    _rawData: [ '座无虚席' ],
+    '专心致志': [Getter/Setter]
+  },
+  GoogleSpreadsheetRow {
+    _sheet: GoogleSpreadsheetWorksheet {
+      _spreadsheet: [GoogleSpreadsheet],
+      _headerRowIndex: 1,
+      _rawProperties: [Object],
+      _cells: [],
+      _rowMetadata: [],
+      _columnMetadata: [],
+      headerValues: [Array]
+    },
+    _rowNumber: 7,
+    _rawData: [ '意想不到' ],
+    '专心致志': [Getter/Setter]
+  }
+]
+[11ty] Serverless (onrequest): / (1735ms)

@@ -12,22 +12,80 @@ function ce(type, className = "") {
   return Object.assign(document.createElement(type), { className });
 }
 
+//State: Flipped? 
+class SlideDiv {
+
+  constructor(slide, pc, _i){
+    this._i = _i
+    this.slide = slide
+    this.slide.setAttribute("tabindex", 0);
+
+    this.front = this.slide.querySelector(".slide__front")
+    this.back = this.slide.querySelector(".slide__back")
+    this.gotIt = this.slide.querySelector(".slide__got-it")
+    this.noGotIt = this.slide.querySelector(".slide__no-got-it")
+
+    // this.back.style.display = "none"
+    // this.ratingRow.style.display = "none"
+    this.opened = false
+
+    this.sc = pc.appendChild(ce("div", "slide-container"));
+    this.sc.appendChild(this.slide);
+
+    this.setClickListeners()
+  };
+
+  setClickListeners(){
+    this.sc.addEventListener("click", onClickSlideContainer.bind(this));
+    this.gotIt.addEventListener("click", onClickGotIt.bind(this));
+    this.noGotIt.addEventListener("click", onClickSlideContainer.bind(this));
+
+    function onClickSlideContainer(e) {
+      console.log("CLICKED")
+      // e.stopPropagation();
+      e.preventDefault();
+
+      console.log("CLICKED continued")
+      if(this.opened){
+        this.opened = false
+        this.slide.classList.remove("slide--gridded")
+        // this.back.style.display = "none"
+      }else {
+        this.opened = true
+        this.slide.classList.add("slide--gridded")
+        // this.back.style.display = ""
+      }
+    }
+
+    function onClickGotIt(e){
+      e.stopPropagation();
+      e.preventDefault();
+
+      console.log("GOT IT CLICKED")
+      fetch("http://158.247.193.21:9999/.netlify/functions/onpost", 
+        {
+          method: "POST", 
+          body: this.front.innerText
+        })
+        .then(res => res.json())
+        .then(json => console.log(json)).catch(e => console.log(e))
+    }
+
+  }
+
+}
+
 addEventListener("load", () => {
+
   let slideDivs = Array.from(document.querySelectorAll("body > div"));
   let pc = document.body.appendChild(ce("div", "presentation-container"));
+  pc.classList.add("pc")
+
   slideDivs = slideDivs.map((slide, _i) => {
-    slide.setAttribute("tabindex", 0);
-    slide.classList.add("slide");
-    let sc = pc.appendChild(ce("div", "slide-container"));
-    sc.appendChild(slide);
-    return Object.assign(sc, {
-      _notes: Array.from(slide.querySelectorAll("notes"), noteElement => {
-        noteElement.parentNode.removeChild(noteElement);
-        return noteElement.innerHTML.trim();
-      }),
-      _i
-    });
+    return new SlideDiv(slide, pc, _i)
   });
+  console.log(JSON.stringify(slideDivs))
+
   let timeoutInterval,
     { body } = document,
     {
@@ -55,74 +113,55 @@ addEventListener("load", () => {
     n = Math.max(0, Math.min(big.length - 1, n));
     if (!force && big.current === n) return;
     big.current = n;
-    let sc = slideDivs[n],
-      slideDiv = sc.firstChild;
-    if (sc._notes.length) {
-      console.group(n);
-      for (let note of sc._notes) console.log("%c%s", "padding:5px;font-family:serif;font-size:18px;line-height:150%;", note);
-      console.groupEnd();
-    }
-    for (let slide of slideDivs) slide.style.display = slide._i === n ? "" : "none";
-    body.className = `talk-mode ${slideDiv.dataset.bodyClass || ""} ${initialBodyClass}`;
-    body.style.cssText = `${initialBodyStyle} ${slideDiv.dataset.bodyStyle || ""}`;
-    window.clearInterval(timeoutInterval);
-    if (slideDiv.dataset.timeToNext) timeoutInterval = window.setTimeout(forward, parseFloat(slideDiv.dataset.timeToNext) * 1000);
-    onResize();
+    let sc = slideDivs[n].sc,
+      slide = slideDivs[n].slide;
+    // if (sc._notes.length) {
+    //   console.group(n);
+    //   for (let note of sc._notes) console.log("%c%s", "padding:5px;font-family:serif;font-size:18px;line-height:150%;", note);
+    //   console.groupEnd();
+    // }
+    for (let slideDiv of slideDivs) slideDiv.sc.style.display = slideDiv._i === n ? "" : "none";
+    body.className = `talk-mode ${slide.dataset.bodyClass || ""} ${initialBodyClass}`;
+    body.style.cssText = `${initialBodyStyle} ${slide.dataset.bodyStyle || ""}`;
+    // window.clearInterval(timeoutInterval);
+    // if (slideDiv.dataset.timeToNext) timeoutInterval = window.setTimeout(forward, parseFloat(slideDiv.dataset.timeToNext) * 1000);
+    // Took out time function
+
+    // onResize();
     if (window.location.hash !== n) window.location.hash = n;
-    document.title = slideDiv.textContent;
+    document.title = slide.textContent;
   }
 
-  function resizeTo(sc, width, height) {
-    let slideDiv = sc.firstChild,
-      padding = Math.min(width * 0.04),
-      fontSize = height;
-    sc.style.width = `${width}px`;
-    sc.style.height = `${height}px`;
-    slideDiv.style.padding = `${padding}px`;
-    if (getComputedStyle(slideDiv).display === "grid") slideDiv.style.height = `${height - padding * 2}px`;
-    for (let step of [100, 50, 10, 2]) {
-      for (; fontSize > 0; fontSize -= step) {
-        slideDiv.style.fontSize = `${fontSize}px`;
-        if (
-          slideDiv.scrollWidth <= width &&
-          slideDiv.offsetHeight <= height &&
-          Array.from(slideDiv.querySelectorAll("div")).every(elem => elem.scrollWidth <= elem.clientWidth && elem.scrollHeight <= elem.clientHeight)
-        ) {
-          break;
-        }
-      }
-      fontSize += step;
-    }
-  }
-
-  function onPrint() {
-    if (big.mode === "print") return;
-    body.className = `print-mode ${initialBodyClass}`;
-    body.style.cssText = initialBodyStyle;
-    emptyNode(pc);
-    for (let sc of slideDivs) {
-      let subContainer = pc.appendChild(ce("div", "sub-container")),
-        sbc = subContainer.appendChild(ce("div", sc.firstChild.dataset.bodyClass || ""));
-      sbc.appendChild(sc);
-      sbc.style.cssText = sc.dataset.bodyStyle || "";
-      sc.style.display = "flex";
-      resizeTo(sc, 512, 320);
-      if (sc._notes.length) continue;
-      let notesUl = subContainer.appendChild(ce("ul", "notes-list"));
-      for (let note of sc._notes) {
-        let li = notesUl.appendChild(ce("li"));
-        li.innerText = note;
-      }
-    }
-    big.mode = "print";
-  }
+  // function resizeTo(slideDiv, width, height) {
+  //   let slide = slideDiv.slide,
+  //     sc = slideDiv.sc,
+  //     padding = Math.min(width * 0.04),
+  //     fontSize = height;
+  //   sc.style.width = `${width}px`;
+  //   sc.style.height = `${height}px`;
+  //   slide.style.padding = `${padding}px`;
+  //   if (getComputedStyle(slide).display === "grid") slide.style.height = `${height - padding * 2}px`;
+  //   for (let step of [100, 50, 10, 2]) {
+  //     for (; fontSize > 0; fontSize -= step) {
+  //       slide.style.fontSize = `${fontSize}px`;
+  //       if (
+  //         slide.scrollWidth <= width &&
+  //         slide.offsetHeight <= height &&
+  //         Array.from(slide.querySelectorAll("div")).every(elem => elem.scrollWidth <= elem.clientWidth && elem.scrollHeight <= elem.clientHeight)
+  //       ) {
+  //         break;
+  //       }
+  //     }
+  //     fontSize += step;
+  //   }
+  // }
 
   function onTalk(i) {
     if (big.mode === "talk") return;
     big.mode = "talk";
     body.className = `talk-mode ${initialBodyClass}`;
     emptyNode(pc);
-    for (let sc of slideDivs) pc.appendChild(sc);
+    for (let slideDiv of slideDivs) pc.appendChild(slideDiv.sc);
     go(i, true);
   }
 
@@ -132,7 +171,9 @@ addEventListener("load", () => {
     body.className = "jump-mode " + initialBodyClass;
     body.style.cssText = initialBodyStyle;
     emptyNode(pc);
-    slideDivs.forEach(sc => {
+    slideDivs.forEach(slideDiv => {
+      let sc = slideDiv.sc
+      let slide = slideDiv.slide
       let subContainer = pc.appendChild(ce("div", "sub-container"));
       subContainer.addEventListener("keypress", e => {
         if (e.key !== "Enter") return;
@@ -141,16 +182,16 @@ addEventListener("load", () => {
         e.preventDefault();
         onTalk(sc._i);
       });
-      let sbc = subContainer.appendChild(ce("div", sc.firstChild.dataset.bodyClass || ""));
+      let sbc = subContainer.appendChild(ce("div", slide.dataset.bodyClass || ""));
       sbc.appendChild(sc);
       sc.style.display = "flex";
       sbc.style.cssText = sc.dataset.bodyStyle || "";
-      resizeTo(sc, 192, 120);
+      // resizeTo(slideDiv, 192, 120);
       function onClickSlide(e) {
         subContainer.removeEventListener("click", onClickSlide);
         e.stopPropagation();
         e.preventDefault();
-        onTalk(sc._i);
+        onTalk(slideDiv._i);
       }
       subContainer.addEventListener("click", onClickSlide);
     });
@@ -158,7 +199,7 @@ addEventListener("load", () => {
 
   function onClick(e) {
     if (big.mode !== "talk") return;
-    if (e.target.tagName !== "A") go((big.current + 1) % big.length);
+    // if (e.target.tagName !== "A") go((big.current + 1) % big.length);
   }
 
   function onKeyDown(e) {
@@ -174,21 +215,20 @@ addEventListener("load", () => {
           return forward();
       }
     }
-    let m = { p: onPrint, t: onTalk, j: onJump }[e.key];
+    let m = { t: onTalk, j: onJump }[e.key];
     if (m) m(big.current);
   }
 
-  function onResize() {
-    if (big.mode !== "talk") return;
-    let { clientWidth: width, clientHeight: height } = document.documentElement;
-    if (ASPECT_RATIO !== false) {
-      if (width / height > ASPECT_RATIO) width = Math.ceil(height * ASPECT_RATIO);
-      else height = Math.ceil(width / ASPECT_RATIO);
-    }
-    resizeTo(slideDivs[big.current], width, height);
-  }
+  // function onResize() {
+  //   if (big.mode !== "talk") return;
+  //   let { clientWidth: width, clientHeight: height } = document.documentElement;
+  //   if (ASPECT_RATIO !== false) {
+  //     if (width / height > ASPECT_RATIO) width = Math.ceil(height * ASPECT_RATIO);
+  //     else height = Math.ceil(width / ASPECT_RATIO);
+  //   }
+  //   resizeTo(slideDivs[big.current], width, height);
+  // }
 
-  window.matchMedia("print").addListener(onPrint);
   document.addEventListener("click", onClick);
   document.addEventListener("keydown", onKeyDown);
   document.addEventListener("touchstart", e => {
@@ -209,7 +249,7 @@ addEventListener("load", () => {
   addEventListener("hashchange", () => {
     if (big.mode === "talk") go(parseHash());
   });
-  addEventListener("resize", onResize);
+  // addEventListener("resize", onResize);
   console.log("This is a big presentation. You can: \n\n* press j to jump to a slide\n" + "* press p to see the print view\n* press t to go back to the talk view");
   body.className = `talk-mode ${initialBodyClass}`;
   go(parseHash() || big.current);

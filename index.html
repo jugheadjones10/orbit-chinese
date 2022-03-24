@@ -1,21 +1,28 @@
 ---
 permalink:
-  onrequest: '/'
+onrequest: '/'
 ---
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <title>Big</title>
-  <link href="big.css" rel="stylesheet" type="text/css" />
-  <script src="big.js"></script>
-</head>
-<body class="light">
-  <div>
-    {{ test }}
-    Your presentation goes here
-    <notes>Speakers notes go here.</notes>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Big</title>
+    <link href="big.css" rel="stylesheet" type="text/css" />
+    <script type="module" async src="big.js"></script>
+  </head>
+  <body class="light">
+    <script>console.log("GGG")</script>
+    {% for row in rows %}
+    <div class="slide">
+      <div class="slide__front">{{ row.word }}</div>
+      <div class="slide__back">{{ row.meaning }}</div>
+      <div class="slide__rating-row">
+        <div class="slide__got-it">Got it</div>
+        <div class="slide__no-got-it">Didn't got it</div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </body>
 </html>
