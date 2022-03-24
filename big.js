@@ -62,7 +62,12 @@ class SlideDiv {
       e.preventDefault();
 
       console.log("GOT IT CLICKED")
-      fetch("http://158.247.193.21:9999/.netlify/functions/onpost", 
+
+      const url = process.env.NODE_ENV === "production" ? 
+        "https://orbit-chinese.netlify.app/.netlify/functions/onpost" :
+        "http://158.247.193.21:9999/.netlify/functions/onpost"
+
+      fetch(url, 
         {
           method: "POST", 
           body: this.front.innerText
