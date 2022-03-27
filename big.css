@@ -85,17 +85,21 @@ div.slide--gridded .slide__back, div.slide--gridded .slide__rating-row{
   display: flex
 }
 
-
 .slide__got-it, .slide__no-got-it{
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 4vw;
-  border: solid;
+  border: solid black;
 }
 
-.slide__got-it{
+.slide__got-it:hover, .slide__no-got-it:hover{
+  background: black;
+  color: white;
+}
+
+.slide__no-got-it{
   border-right: 0;
 }
 

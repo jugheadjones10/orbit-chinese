@@ -11,3 +11,4 @@ netlify/functions/onrequest/**
 
 # Google Sheet Credentials
 google-credentials.json
+.env

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./generate-google-cred.sh && eleventy"
+    "build": "node generate-google-cred && eleventy",
+    "start": "node generate-google-cred && eleventy --serve"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,8 @@
     "@11ty/eleventy": "^1.0.0"
   },
   "dependencies": {
-    "google-spreadsheet": "^3.2.0"
+    "dotenv": "^16.0.0",
+    "google-spreadsheet": "^3.2.0",
+    "jsonfile": "^6.1.0"
   }
 }

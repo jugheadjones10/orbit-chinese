@@ -11,7 +11,7 @@ async function getRows(){
   console.log(rows)
   return rows.map(x => {
     return {
-      word: x["_rawData"],
+      word: x["_rawData"][0],
       meaning: "Hey my name is YJ"
     }
   })

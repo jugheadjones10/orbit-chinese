@@ -13,74 +13,107 @@ function ce(type, className = "") {
 }
 
 //State: Flipped? 
-class SlideDiv {
 
-  constructor(slide, pc, _i){
-    this._i = _i
-    this.slide = slide
-    this.slide.setAttribute("tabindex", 0);
+addEventListener("load", () => {
 
-    this.front = this.slide.querySelector(".slide__front")
-    this.back = this.slide.querySelector(".slide__back")
-    this.gotIt = this.slide.querySelector(".slide__got-it")
-    this.noGotIt = this.slide.querySelector(".slide__no-got-it")
+  class SlideDiv {
 
-    // this.back.style.display = "none"
-    // this.ratingRow.style.display = "none"
-    this.opened = false
+    constructor(slide, pc, _i){
+      this._i = _i
+      this.slide = slide
+      this.slide.setAttribute("tabindex", 0);
 
-    this.sc = pc.appendChild(ce("div", "slide-container"));
-    this.sc.appendChild(this.slide);
+      this.front = this.slide.querySelector(".slide__front")
+      this.back = this.slide.querySelector(".slide__back")
+      this.key = this.front.innerText
 
-    this.setClickListeners()
-  };
+      this.gotIt = this.slide.querySelector(".slide__got-it")
+      this.noGotIt = this.slide.querySelector(".slide__no-got-it")
 
-  setClickListeners(){
-    this.sc.addEventListener("click", onClickSlideContainer.bind(this));
-    this.gotIt.addEventListener("click", onClickGotIt.bind(this));
-    this.noGotIt.addEventListener("click", onClickSlideContainer.bind(this));
+      this.correct = false
 
-    function onClickSlideContainer(e) {
-      console.log("CLICKED")
-      // e.stopPropagation();
-      e.preventDefault();
+      this.opened = false
 
-      console.log("CLICKED continued")
+      this.sc = pc.appendChild(ce("div", "slide-container"));
+      this.sc.appendChild(this.slide);
+
+      this.setClickListeners()
+    };
+
+    flip(){
       if(this.opened){
         this.opened = false
         this.slide.classList.remove("slide--gridded")
-        // this.back.style.display = "none"
       }else {
         this.opened = true
         this.slide.classList.add("slide--gridded")
-        // this.back.style.display = ""
       }
     }
 
-    function onClickGotIt(e){
-      e.stopPropagation();
-      e.preventDefault();
+    setClickListeners(){
+      this.sc.addEventListener("click", onClickSlideContainer.bind(this));
+      this.gotIt.addEventListener("click", onClickGotIt.bind(this));
+      this.noGotIt.addEventListener("click", onClickNoGotIt.bind(this));
 
-      console.log("GOT IT CLICKED")
+      function onClickSlideContainer(e) {
+        console.log("CLICKED")
+        // e.stopPropagation();
+        e.preventDefault();
+        this.flip()
+      }
 
-      const url = process.env.NODE_ENV === "production" ? 
-        "https://orbit-chinese.netlify.app/.netlify/functions/onpost" :
-        "http://158.247.193.21:9999/.netlify/functions/onpost"
+      function onClickGotIt(e){
+        e.stopPropagation();
+        e.preventDefault();
 
-      fetch(url, 
-        {
-          method: "POST", 
-          body: this.front.innerText
-        })
-        .then(res => res.json())
-        .then(json => console.log(json)).catch(e => console.log(e))
+        // const url = "G"
+        // process.env.NODE_ENV === "production" ? 
+        // "https://orbit-chinese.netlify.app/.netlify/functions/onpost" 
+        // :
+        // "https://158.247.193.21:8081/.netlify/functions/onpost"
+
+        // fetch("http://158.247.193.21:8888/.netlify/functions/onpost", 
+        //   {
+        //     method: "GET", 
+        //     // body: "EE"
+        //   })
+        //   .then(res => res.json())
+        //   .then(json => console.log(json)).catch(e => console.log(e))
+
+        // fetch(
+          // 'http://158.247.193.21:9999/.netlify/functions/onpost',
+          // {headers: {'Content-Type': 'application/json'}, method: "GET"}
+        // )
+        //   .then(x => x.json())
+        //   .then(x => console.log(x))
+        //   .catch(e => console.log(e))
+
+        if(big.current === big.length - 2){
+          console.log("before last slide")
+          //send batch updates to netlify serverless
+          batchUpdate()
+        }
+        this.correct = true
+        this.flip()
+        forward()
+      }
+
+      function onClickNoGotIt(e){
+        e.stopPropagation();
+        e.preventDefault();
+
+        if(big.current === big.length - 2){
+          console.log("before last slide")
+          //send batch updates to netlify serverless
+          batchUpdate()
+        }
+        this.correct = false
+        this.flip()
+        forward()
+      }
     }
 
   }
-
-}
-
-addEventListener("load", () => {
 
   let slideDivs = Array.from(document.querySelectorAll("body > div"));
   let pc = document.body.appendChild(ce("div", "presentation-container"));
@@ -89,7 +122,26 @@ addEventListener("load", () => {
   slideDivs = slideDivs.map((slide, _i) => {
     return new SlideDiv(slide, pc, _i)
   });
-  console.log(JSON.stringify(slideDivs))
+  // console.log(JSON.stringify(slideDivs))
+  
+  function batchUpdate(){
+    const results = {}
+    for (let slideDiv of slideDivs) results[slideDiv.key] = slideDiv.correct
+
+    console.log(JSON.stringify(results))
+    fetch(
+      'http://158.247.193.21:9999/.netlify/functions/onpost',
+      {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(results)
+      }
+    )
+      .then(x => x.json())
+      .then(x => console.log(x))
+      .catch(e => console.log(e))
+
+  }
 
   let timeoutInterval,
     { body } = document,

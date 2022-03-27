@@ -35,13 +35,31 @@ async function handler(event) {
 
   try {
 
-    return {
-     statusCode: 200,
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify(data),
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
     };
+
+    if (event.httpMethod === 'OPTIONS') {
+      // To enable CORS
+      return {
+        statusCode: 200, 
+        headers,
+        body: 'success'
+      };
+
+    }else{
+
+      return {
+        statusCode: 200,
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify(data),
+      };
+    }
 
   } catch (error) {
 

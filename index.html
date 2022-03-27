@@ -12,17 +12,28 @@ onrequest: '/'
     <script type="module" async src="big.js"></script>
   </head>
   <body class="light">
-    <script>console.log("GGG")</script>
+    <script>
+
+
+    </script>
     {% for row in rows %}
     <div class="slide">
       <div class="slide__front">{{ row.word }}</div>
       <div class="slide__back">{{ row.meaning }}</div>
       <div class="slide__rating-row">
-        <div class="slide__got-it">Got it</div>
         <div class="slide__no-got-it">Didn't got it</div>
+        <div class="slide__got-it">Got it</div>
       </div>
     </div>
     {% endfor %}
 
+    <div class="slide">
+      <div class="slide__front">LAST SLIDE</div>
+      <div class="slide__back">f</div>
+      <div class="slide__rating-row">
+        <div class="slide__no-got-it">Didn't got it</div>
+        <div class="slide__got-it">Got it</div>
+      </div>
+    </div>
   </body>
 </html>
