@@ -1,4 +1,5 @@
-let ASPECT_RATIO = window.BIG_ASPECT_RATIO === undefined ? 1.6 : window.BIG_ASPECT_RATIO;
+import fisherYatesShuffle from "./shared/fisher-yates-shuffle/index.js"
+import supermemo from "./supermemo.js"
 
 function parseHash() {
   return parseInt(window.location.hash.substring(1), 10);
@@ -12,31 +13,83 @@ function ce(type, className = "") {
   return Object.assign(document.createElement(type), { className });
 }
 
-//State: Flipped? 
-
 addEventListener("load", () => {
 
   class SlideDiv {
-
     constructor(slide, pc, _i){
+      console.log(supermemo.toString())
       this._i = _i
       this.slide = slide
       this.slide.setAttribute("tabindex", 0);
 
       this.front = this.slide.querySelector(".slide__front")
       this.back = this.slide.querySelector(".slide__back")
-      this.key = this.front.innerText
-
       this.gotIt = this.slide.querySelector(".slide__got-it")
       this.noGotIt = this.slide.querySelector(".slide__no-got-it")
 
-      this.correct = false
+      this.type = this.slide.dataset.slideType
+      this.word = this.slide.dataset.word
+      this.key = Number(this.slide.dataset.key)
+      this.efactor = Number(this.slide.dataset.efactor)
+      this.interval = Number(this.slide.dataset.interval)
+      this.repetition = Number(this.slide.dataset.repetition)
 
+      this.correct = false
       this.opened = false
+
+      if(this.type == "coverType"){
+        this.front.removeChild(this.front.firstChild)
+
+        //This assumes that coverTypes are 4 character words only
+        var randomIndexes = fisherYatesShuffle([0,1,2,3]).slice(0,2)
+        for (var i = 0; i < this.word.length; i++) {
+          var span
+          if(randomIndexes.includes(i)){
+            span = ce("span", "hidden-char");
+          }else{
+            span = ce("span")
+          }
+          span.innerText = this.word[i]
+          this.front.appendChild(span)
+        }
+
+      }
+
+      if(this.type == "examplesType"){
+
+        try{
+          const exampleEl = this.front.querySelector(".text-container")
+          // const exampleEl = this.front.firstChild
+          // For fucks sake I don't get why firstChild doesn't return the same thing.
+          const exampleSentence = exampleEl.innerText
+          console.log("example element", JSON.stringify(exampleEl))
+          console.log("EXAMPLE SEN", exampleSentence)
+          // console.log("key ", this.key)
+          exampleEl.innerHTML = ""
+
+          const matchIndex = exampleSentence.indexOf(this.word)
+          // console.log("Match index", matchIndex)
+
+          // console.log("random indexes", randomIndexes)
+          for (var i = 0; i < exampleSentence.length; i++) {
+            var span
+            if(i >= matchIndex && i < matchIndex + this.word.length){
+              span = ce("span", "hidden-char");
+            }else{
+              span = ce("span")
+            }
+            span.innerText = exampleSentence[i]
+            exampleEl.appendChild(span)
+          }
+
+        }catch(e){
+          console.log("ERR", e)
+        }
+
+      }
 
       this.sc = pc.appendChild(ce("div", "slide-container"));
       this.sc.appendChild(this.slide);
-
       this.setClickListeners()
     };
 
@@ -56,7 +109,6 @@ addEventListener("load", () => {
       this.noGotIt.addEventListener("click", onClickNoGotIt.bind(this));
 
       function onClickSlideContainer(e) {
-        console.log("CLICKED")
         // e.stopPropagation();
         e.preventDefault();
         this.flip()
@@ -65,28 +117,6 @@ addEventListener("load", () => {
       function onClickGotIt(e){
         e.stopPropagation();
         e.preventDefault();
-
-        // const url = "G"
-        // process.env.NODE_ENV === "production" ? 
-        // "https://orbit-chinese.netlify.app/.netlify/functions/onpost" 
-        // :
-        // "https://158.247.193.21:8081/.netlify/functions/onpost"
-
-        // fetch("http://158.247.193.21:8888/.netlify/functions/onpost", 
-        //   {
-        //     method: "GET", 
-        //     // body: "EE"
-        //   })
-        //   .then(res => res.json())
-        //   .then(json => console.log(json)).catch(e => console.log(e))
-
-        // fetch(
-          // 'http://158.247.193.21:9999/.netlify/functions/onpost',
-          // {headers: {'Content-Type': 'application/json'}, method: "GET"}
-        // )
-        //   .then(x => x.json())
-        //   .then(x => console.log(x))
-        //   .catch(e => console.log(e))
 
         if(big.current === big.length - 2){
           console.log("before last slide")
@@ -115,26 +145,60 @@ addEventListener("load", () => {
 
   }
 
-  let slideDivs = Array.from(document.querySelectorAll("body > div"));
+  let slideDivs = Array.from(document.querySelectorAll(".slide"));
   let pc = document.body.appendChild(ce("div", "presentation-container"));
   pc.classList.add("pc")
 
   slideDivs = slideDivs.map((slide, _i) => {
     return new SlideDiv(slide, pc, _i)
   });
-  // console.log(JSON.stringify(slideDivs))
-  
+
+  console.log(JSON.stringify(slideDivs))
+
   function batchUpdate(){
     const results = {}
-    for (let slideDiv of slideDivs) results[slideDiv.key] = slideDiv.correct
 
-    console.log(JSON.stringify(results))
+    let tempStore = {}
+    //When you have time, try and get /data.json to work so that you don't need to stuff data in html data attributes
+    const newSlideDivs = slideDivs.slice(0, slideDivs.length - 1)
+    for (let slideDiv of newSlideDivs) {
+      let gradeAddition = slideDiv.correct ? (slideDiv.type === "examplesType" ? 1 : 2) : 0
+
+      if(tempStore[slideDiv.word]){
+        tempStore[slideDiv.word].grade += gradeAddition
+      }else{
+        tempStore[slideDiv.word] = {
+          grade: gradeAddition,
+          key: slideDiv.key,
+          efactor: slideDiv.efactor,
+          interval: slideDiv.interval,
+          repetition: slideDiv.repetition,
+        }
+      }
+    }
+
+    console.log("Before Supermemo" + tempStore)
+    for(const [key, value] of Object.entries(tempStore)){
+      supermemo(value, value.grade)
+    }
+    console.log("After supermemo", JSON.stringify(tempStore))
+
+    // for(let word of words){
+    //   console.log("Word", JSON.stringify(word))
+    //   var {interval, repetition, efactor} = supermemo(word, tempStore[word.word])
+    //   word.interval = interval
+    //   word.repetition = repetition
+    //   word.efactor = efactor
+    // }
+
+
+    // console.log(JSON.stringify(results))
     fetch(
-      'http://158.247.193.21:9999/.netlify/functions/onpost',
+      'http://158.247.193.21:8888/.netlify/functions/onpost',
       {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(results)
+        body: JSON.stringify(tempStore)
       }
     )
       .then(x => x.json())
@@ -169,6 +233,7 @@ addEventListener("load", () => {
   function go(n, force) {
     n = Math.max(0, Math.min(big.length - 1, n));
     if (!force && big.current === n) return;
+    var prevI = big.current
     big.current = n;
     let sc = slideDivs[n].sc,
       slide = slideDivs[n].slide;
@@ -177,7 +242,15 @@ addEventListener("load", () => {
     //   for (let note of sc._notes) console.log("%c%s", "padding:5px;font-family:serif;font-size:18px;line-height:150%;", note);
     //   console.groupEnd();
     // }
-    for (let slideDiv of slideDivs) slideDiv.sc.style.display = slideDiv._i === n ? "" : "none";
+
+    // for (let slideDiv of slideDivs) slideDiv.sc.style.display = slideDiv._i === n ? "" : "none";
+    for (let slideDiv of slideDivs) {
+      if(slideDiv._i === prevI){
+        slideDiv.sc.classList.replace("show", "hide")
+      }else if(slideDiv._i === n){
+        slideDiv.sc.classList.add("show")
+      }
+    }
     body.className = `talk-mode ${slide.dataset.bodyClass || ""} ${initialBodyClass}`;
     body.style.cssText = `${initialBodyStyle} ${slide.dataset.bodyStyle || ""}`;
     // window.clearInterval(timeoutInterval);
@@ -288,21 +361,21 @@ addEventListener("load", () => {
 
   document.addEventListener("click", onClick);
   document.addEventListener("keydown", onKeyDown);
-  document.addEventListener("touchstart", e => {
-    if (big.mode !== "talk") return;
-    let { pageX: startingPageX } = e.changedTouches[0];
-    document.addEventListener(
-      "touchend",
-      e2 => {
-        let distanceTraveled = e2.changedTouches[0].pageX - startingPageX;
-        // Don't navigate if the person didn't swipe by fewer than 4 pixels
-        if (Math.abs(distanceTraveled) < 4) return;
-        if (distanceTraveled < 0) forward();
-        else reverse();
-      },
-      { once: true }
-    );
-  });
+  // document.addEventListener("touchstart", e => {
+  //   if (big.mode !== "talk") return;
+  //   let { pageX: startingPageX } = e.changedTouches[0];
+  //   document.addEventListener(
+  //     "touchend",
+  //     e2 => {
+  //       let distanceTraveled = e2.changedTouches[0].pageX - startingPageX;
+  //       // Don't navigate if the person didn't swipe by fewer than 4 pixels
+  //       if (Math.abs(distanceTraveled) < 4) return;
+  //       if (distanceTraveled < 0) forward();
+  //       else reverse();
+  //     },
+  //     { once: true }
+  //   );
+  // });
   addEventListener("hashchange", () => {
     if (big.mode === "talk") go(parseHash());
   });

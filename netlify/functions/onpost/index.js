@@ -1,38 +1,10 @@
-const { EleventyServerless } = require("@11ty/eleventy");
-
-const { GoogleSpreadsheet } = require("google-spreadsheet");
-const googleCreds = require("../../../google-credentials.json");
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+require('dotenv').config()
 
 async function handler(event) {
 
   console.log(event)
   console.log(event.body)
-  const doc = new GoogleSpreadsheet("12ACZR7Wfd2qlFvz_8RB18Y_tr4BrzB5vCB2MBNUugVI");
-  await doc.useServiceAccountAuth(googleCreds);
-  await doc.loadInfo();
-
-  const sheet = doc.sheetsByTitle["Sheet1"];
-  const rows = await sheet.getRows();
-  // console.log(rows)
-
-  const processedRows = rows.map(row => {
-    return {
-      rowNumber: row._rowNumber,
-      word: row._rawData[0],
-      level: row._rawData[1],
-      date: row._rawData[2]
-    }
-  })
-
-  // const { rowNumber } = processedRows.find(x => bookNum === parseInt(x.bookNumber, 10))
-  //   await sheet.loadCells(rowNumber + ":" + rowNumber);
-  //   const inventoryCell = sheet.getCell(rowNumber - 1, 5) 
-  //   inventoryCell.value = 0
-  //   await sheet.saveUpdatedCells()
-
-  const data = rows.map(x => x["_rawData"])
-
   try {
 
     const headers = {
@@ -50,14 +22,39 @@ async function handler(event) {
       };
 
     }else{
+      const updateArr = Object.values(JSON.parse(event.body))
+      console.log("updateArr", updateArr)
+
+      Promise.all(updateArr.map(item => {
+        item.key = item.key.toString()
+        console.log(item)
+        const json = {
+          bindVars: item
+        }
+
+        return fetch("https://api-bullhead-dc53baa7.paas.macrometa.io/_fabric/_system/_api/restql/execute/update-word", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "apikey " + process.env.MACROMETA_API_KEY
+          },
+          body: JSON.stringify(json)
+        })
+          .then(res => res.json())
+          .then(res => {
+            console.log("response", res)
+          })
+      }))
+        .then(res => console.log(res))
+        .catch(x => console.log(x))
+
 
       return {
         statusCode: 200,
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
           "Access-Control-Allow-Origin": "*"
-        },
-        body: JSON.stringify(data),
+        }
       };
     }
 

@@ -1,7 +1,3 @@
----
-permalink:
-onrequest: '/'
----
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,22 +5,121 @@ onrequest: '/'
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>Big</title>
     <link href="big.css" rel="stylesheet" type="text/css" />
-    <script type="module" async src="big.js"></script>
+    <!-- Is the below loading strategy correct? -->
+    <script async src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <!-- module scripts are deferred by default -->
+    <script type="module" src="big.js"></script>
+    <script type="module" src="load-test.js"></script>
+    <script>
+      console.log("GGGG")
+    </script>
   </head>
   <body class="light">
-    <script>
+    {% for row in words.macroMetaRows %}
 
+    {% if row.type == "coverType" %}
 
-    </script>
-    {% for row in rows %}
-    <div class="slide">
+    <div class="slide" 
+      data-slide-type="{{ row.type }}" 
+      data-efactor="{{ row.efactor }}" 
+      data-interval="{{ row.interval }}" 
+      data-repetition="{{ row.repetition }}" 
+      data-key="{{ row._key }}"
+      data-word="{{ row.word }}">
+      <div class="slide__wrapper"> 
       <div class="slide__front">{{ row.word }}</div>
-      <div class="slide__back">{{ row.meaning }}</div>
+      <div class="slide__back">
+        <div class="back-heading">Definition</div>
+        <ul>
+        {% for englishDef in row.englishDefs %}
+          <li>{{ englishDef }}</li>
+        {% endfor %}
+        <li>{{ row.chineseDef }}</li>
+        </ul>
+        <div class="back-heading">Examples</div>
+        <ul>
+        {% for example in row.examples %}
+          <li>{{ example }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      </div>
       <div class="slide__rating-row">
         <div class="slide__no-got-it">Didn't got it</div>
         <div class="slide__got-it">Got it</div>
       </div>
     </div>
+
+    {% elsif row.type == "defType" %}
+
+    <div class="slide" 
+      data-slide-type="{{ row.type }}" 
+      data-efactor="{{ row.efactor }}" 
+      data-interval="{{ row.interval }}" 
+      data-repetition="{{ row.repetition }}" 
+      data-key="{{ row._key }}"
+      data-word="{{ row.word }}">
+      <div class="slide__wrapper"> 
+      <div class="slide__front slide__front--sentence">
+        {% for englishDef in row.englishDefs %}
+          <div>{{ englishDef }}</div>
+        {% endfor %}
+      </div>
+      <div class="slide__back">
+        <div class="back-word-answer"><span>{{ row.word }}</span></div>
+        <br/>
+        <div class="back-heading">Definition</div>
+        <ul>
+        <li>{{ row.chineseDef }}</li>
+        </ul>
+        <br/>
+        <div class="back-heading">Examples</div>
+        <ul>
+        {% for example in row.examples %}
+          <li>{{ example }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      </div>
+      <div class="slide__rating-row">
+        <div class="slide__no-got-it">Didn't got it</div>
+        <div class="slide__got-it">Got it</div>
+      </div>
+    </div>
+
+    {% else %}
+
+    <div class="slide" 
+      data-slide-type="{{ row.type }}" 
+      data-efactor="{{ row.efactor }}" 
+      data-interval="{{ row.interval }}" 
+      data-repetition="{{ row.repetition }}" 
+      data-key="{{ row._key }}"
+      data-word="{{ row.word }}">
+      <div class="slide__wrapper"> 
+      <div class="slide__front slide__front--exampleSentence">
+        <div class="text-container">
+          {{ row.frontExample }}
+        </div>
+      </div>
+      <div class="slide__back">
+        <div class="back-heading">Definition</div>
+        <ul>
+        {% for englishDef in row.englishDefs %}
+          <li>{{ englishDef }}</li>
+        {% endfor %}
+        <li>{{ row.chineseDef }}</li>
+        </ul>
+      </div>
+      </div>
+      <div class="slide__rating-row">
+        <div class="slide__no-got-it">Didn't got it</div>
+        <div class="slide__got-it">Got it</div>
+      </div>
+    </div>
+
+    {% endif %}
+
     {% endfor %}
 
     <div class="slide">
@@ -35,5 +130,6 @@ onrequest: '/'
         <div class="slide__got-it">Got it</div>
       </div>
     </div>
+
   </body>
 </html>

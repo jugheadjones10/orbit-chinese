@@ -29,69 +29,187 @@ em {
 }
 
 .pc{
-  border: solid blue;
+  position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 div.slide-container {
   width: 100%;
   height: 100%;
-
-  background-size: 100%;
+  position: absolute;
+  left: 100%;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid red;
+  /* border: solid yellow; */
+}
+
+.slide-container.show{
+  animation-name: overlay-in;
+  animation-duration: 600ms;
+  animation-fill-mode: forwards;
+}
+
+.slide-container.hide{
+  animation-name: overlay-out;
+  animation-duration: 600ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes overlay-in {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes overlay-out {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -100%;
+  }
 }
 
 div.slide {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
   width: 100%;
   height: 100%;
-  grid-template-columns: 100% 0%;
+  /* border: solid purple; */
+}
 
-  cursor: pointer;
-  cursor: hand;
+.slide__wrapper{
+  flex: 1 0 100%;
+  display: flex;
+  flex-direction: row;
+  /* border: solid purple; */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: flex-basis 0.5s;
+}
+
+div.slide--gridded .slide__wrapper{
+  flex-basis: 90%;
+}
+
+.slide__front{
+  flex: 1 0 100%;
+  min-width: 0;
+  /* Write a whole article about the min-width fiasco */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   border: solid;
+  border-right: 0;
+  transition: border-right 0.5s, flex-basis 0.5s, font-size 0.5s;
+  position: relative;
 }
 
-.slide__front, .slide__back{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20vw;
+
+div.slide--gridded .slide__front{
+  flex-basis: 50%;
+  font-size: max(80px, 12vw);
 }
+
+.slide__front--exampleSentence, div.slide--gridded .slide__front--exampleSentence {
+  font-size: max(30px, 4.5vw);
+  align-items: unset;
+}
+
+.slide__front .text-container {
+  /* border: solid pink; */
+  width: 50vw;
+  /* height: 200px; */
+  max-height: 100%;
+  overflow-y: scroll;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: top 0.5s, transform 0.5s;
+}
+
+
+
+/* There's something terribly wrong with the below rule */
+.slide__front--sentence, div.slide--gridded .slide__front--sentence{
+  flex-direction: column;
+  overflow-y: auto;
+  font-size: max(30px, 5vw);
+}
+
+.slide__front--sentence > div{
+  /* border: solid purple; */
+
+  flex-basis: 50%;
+  display: flex;
+  width: 50vw;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* div.slide--gridded .slide__front{ */
+/*   font-size: max(80px, 10vw); */
+/* } */
+
+/* div.slide--gridded .slide__front--medium{ */
+/*   font-size: 4vw; */
+/* } */
 
 .slide__back{
-  font-size: 10vw;
-  display: none;
+  flex: 1 0 50%;
+  font-size: 30px;
+  padding-top: 50px;
+  padding-left: 1.2vw;
+  padding-right: 1.2vw;
+  overflow-y: auto;
+  border: solid;
+  /* border: solid brown; */
+}
+
+div.slide--gridded .slide__back{
+  flex-basis: 50%;
+  display: block;
 }
 
 .slide__rating-row{
-  display: none;
-  /* border: solid purple; */
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-
-div.slide--gridded{
-  grid-template-columns: 40% 60%;
-  grid-template-rows: 90% 10%;
-}
-
-div.slide--gridded .slide__back, div.slide--gridded .slide__rating-row{
-  display: flex
+  flex-basis: 10%;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .slide__got-it, .slide__no-got-it{
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4vw;
+  font-size: 30px;
   border: solid black;
+  border-top: 0;
+}
+
+.slide__no-got-it{
+  border-right: 0;
 }
 
 .slide__got-it:hover, .slide__no-got-it:hover{
@@ -99,8 +217,47 @@ div.slide--gridded .slide__back, div.slide--gridded .slide__rating-row{
   color: white;
 }
 
-.slide__no-got-it{
-  border-right: 0;
+@media (max-width: 768px) {
+
+  .slide--gridded .slide__front .text-container {
+    transform: translateY(0%);
+    top: 5%;
+  }
+
+  .slide__wrapper{
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  div.slide__front{
+    border-right: solid;
+  }
+
+  div.slide--gridded .slide__front{
+    border-bottom: 0;
+  }
+
+  .slide__front .text-container {
+    width: 75vw;
+  }
+
+  .slide__front--sentence > div{
+    width: 75vw;
+  }
+
+}
+
+.back-heading {
+  font-weight: 800;
+}
+
+.back-word-answer {
+  font-weight: 800;
+  font-size: 40px;
+}
+
+.back-word-answer > span{
+  background-color: yellow;
 }
 
 /* .slide--gridded .slide__front, .slide--gridded .slide_back{ */
@@ -188,4 +345,16 @@ div.slide > video:only-child {
   width: 100%;
 }
 
+span{
+  /* border: solid; */
+}
+
+.hidden-char{
+  background-color: black; 
+  transition: background-color 0.8s;
+}
+
+div.slide--gridded .hidden-char{
+  background-color: yellow; 
+}
 

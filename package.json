@@ -16,7 +16,10 @@
   },
   "dependencies": {
     "dotenv": "^16.0.0",
+    "fisher-yates-shuffle": "file:shared/fisher-yates-shuffle",
     "google-spreadsheet": "^3.2.0",
-    "jsonfile": "^6.1.0"
+    "jsdom": "^19.0.0",
+    "jsonfile": "^6.1.0",
+    "node-fetch": "^3.2.3"
   }
 }

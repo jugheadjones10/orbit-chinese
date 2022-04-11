@@ -1,96 +1,842 @@
-[11ty] Serverless: 1 file bundled to ./netlify/functions/onrequest.
-[11ty] Copied 2 files / Wrote 0 files in 0.13 seconds (v1.0.0)
+◈ Netlify Dev ◈
+◈ Ignored build settings env var: PRIVATE_KEY_ID (defined in .env file)
+◈ Injected .env file env var: PRIVATE_KEY_ID
+◈ Ignored build settings env var: PRIVATE_KEY (defined in .env file)
+◈ Injected .env file env var: PRIVATE_KEY
+◈ Ignored build settings env var: CLIENT_ID (defined in .env file)
+◈ Injected .env file env var: CLIENT_ID
+◈ Ignored general context env var: LANG (defined in process)
+◈ Injected .env file env var: MACROMETA_API_KEY
+◈ Loaded function onpost http://localhost:8888/.netlify/functions/onpost.
+◈ Loaded function onrequest http://localhost:8888/.netlify/functions/onrequest.
+◈ Functions server is listening on 36397
+◈ Starting Netlify Dev with Eleventy
+
+> orbital-chinese@1.0.0 start
+> node generate-google-cred && eleventy --serve
+
+item - pre {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [
+    '今天参加会议的人很多，可以说是座无虚席。',
+    '音乐会那天，音乐厅里座无虚席。',
+    '使教堂座无虚席总是一个教士最难完成的任务。',
+    '当我们本地的球队争夺联赛杯时，场内座无虚席。',
+    '中国杂技团在加拿大的每场演出不仅座无虚席，而且还得增加数以百计的临时座位。',
+    '讲座吸引了华南理工大学的莘莘学子，座无虚席。',
+    '这部电影刚一上映，电影票就抢售一空，场内座无虚席。',
+    '歌星们在那里演出，场场爆满，座无虚席。',
+    '今天的劳模报告会，大礼堂里座无虚席。',
+    '这部电影十分好看，离开演还有十分钟，放映厅内就已经座无虚席了。'
+  ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+item {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [ '歌星们在那里演出，场场爆满，座无虚席。', '当我们本地的球队争夺联赛杯时，场内座无虚席。' ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+in -item {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [ '歌星们在那里演出，场场爆满，座无虚席。', '当我们本地的球队争夺联赛杯时，场内座无虚席。' ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+in -item {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [ '歌星们在那里演出，场场爆满，座无虚席。' ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+item - pre {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [
+    '他这些语重心长的话，深深地打动了我的心。',
+    '老师语重心长地嘱咐同学们，上了中学更要努力学习。',
+    '老师的话语重心长，包含着对我们的殷切希望。',
+    '他语重心长地告诫我要好好学习。',
+    '老师语重心长的话语，同学们永记不忘。',
+    '每当我犯错误的时候，爸爸妈妈总是语重心长的批评我。',
+    '他那些语重心长、动人心弦的话，使我不禁泪如雨下。',
+    '每每和爸爸交谈时，他对我说话总是语重心长。',
+    '外婆老是语重心长地教我要做一个有贡献力量的人。',
+    '她这番语重心长的谈话，我们应该铭记在心。',
+    '我犯了错，妈妈语重心长的教导我。',
+    '老师的这一番谈话，语重心长，发人深省。',
+    '妈妈语重心长地劝导我要好好学习。',
+    '妈妈摸着我的头，语重心长地教我做人的道理。',
+    '我犯了错误，妈妈语重心长的教育我。',
+    '老师语重心长地教我们怎样学习。',
+    '老师总是语重心长地叫我把字写好，过好生字关。',
+    '老师语重心长地教导我们长大要为祖国做贡献。',
+    '爸爸语重心长地说：“你以后要走怎样的路，自己好好掂量掂量吧！”。',
+    '老师语重心长的话语，同学们终身难忘。'
+  ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+item {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [ '老师语重心长地教导我们长大要为祖国做贡献。', '外婆老是语重心长地教我要做一个有贡献力量的人。' ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+in -item {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [ '老师语重心长地教导我们长大要为祖国做贡献。', '外婆老是语重心长地教我要做一个有贡献力量的人。' ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+in -item {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [ '老师语重心长地教导我们长大要为祖国做贡献。' ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+item - pre {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [
+    '突然一阵狂风暴雨，天顿时灰暗下来。',
+    '海燕在狂风暴雨中勇敢地飞翔。',
+    '今天真是白日见鬼，倒霉极了，刚出门就遇到了狂风暴雨，淋了个落汤鸡，事还没办成。',
+    '春天和风细雨，夏天狂风暴雨。',
+    '昨天一场狂风暴雨，吓得小孩连连惊叫。',
+    '他们冒着狂风暴雨，连夜把这个十万火急的通知送到了抗洪前线。',
+    '陈老师是从革命斗争的狂风暴雨中走过来的老党员。',
+    '这棵大树屹立在山头，勇敢地面对狂风暴雨，毫无畏惧。',
+    '不管是狂风暴雨，不管是惊涛骇浪，你们一定要把战斗的旗帜指向共产主义啊！',
+    '小草不择地势，不怕狂风暴雨，不畏严寒酷暑，不管条件怎样恶劣，它都顽强地生长着，默默无闻地装点着大自然。',
+    '愿你是航船，在生活的海洋里乘风破浪；愿你是水晶，永远保持一颗纯洁善良的心；愿你是雄鹰，经得起狂风暴雨的考验。',
+    '愿你是雄鹰，经得起生活中狂风暴雨的考验。',
+    '我在夏天里耕耘，因为一份期待。我用我的微笑等待着夏日的风雨，守候这片土地，不管这天气是狂风暴雨还是烈日炎炎，用晶莹的汗水守护干涸的大地，用坚毅写下等待的诗篇。',
+    '狂风暴雨，是我伤心时的泪水和无奈的话语，无论你做什么，都希望你能珍惜你自己！因',
+    '不要畏狂风暴雨，只要你有信念，风雨只是泥丸。',
+    '比这天气还要糟糕。或许是因为心情，我竟喜欢上了这狂风暴雨。',
+    '在革命的狂风暴雨下的腐败王朝已濒临摇摇欲坠的状态。',
+    '我幻想着偶尔，一定有风雨雷电将她袭击，却听到有人说，大海有这么博大的心怀，一定会从容面对，把嘶吼的雷电迅速埋藏在心底，把狂暴的风雨容进自己的血液里，变成了大海里的一滴，让那狂风暴雨都成为自己的好朋友。',
+    '当年他年轻气盛，全家大小都被他弄得惶惶恐恐的，生怕会惹来狂风暴雨。',
+    '成长，不在是那刚拱出地面怯生生的嫩芽，它已经成为狂风暴雨中的娇艳的花朵。成长，意味从此不再留恋雨后的七彩虹云，而要脚踏实地地去奋斗!在成长的路程里，难免会有些牺牲。但我相信，我不会退缩，不会后悔。'
+  ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+item {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [
+    '昨天一场狂风暴雨，吓得小孩连连惊叫。',
+    '成长，不在是那刚拱出地面怯生生的嫩芽，它已经成为狂风暴雨中的娇艳的花朵。成长，意味从此不再留恋雨后的七彩虹云，而要脚踏实地地去奋斗!在成长的路程里，难免会有些牺牲。但我相信，我不会退缩，不会后悔。'
+  ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+in -item {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [
+    '昨天一场狂风暴雨，吓得小孩连连惊叫。',
+    '成长，不在是那刚拱出地面怯生生的嫩芽，它已经成为狂风暴雨中的娇艳的花朵。成长，意味从此不再留恋雨后的七彩虹云，而要脚踏实地地去奋斗!在成长的路程里，难免会有些牺牲。但我相信，我不会退缩，不会后悔。'
+  ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+in -item {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [ '昨天一场狂风暴雨，吓得小孩连连惊叫。' ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+final words [
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'coverType'
+  },
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'defType'
+  },
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'examplesType',
+    frontExample: '当我们本地的球队争夺联赛杯时，场内座无虚席。'
+  },
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'examplesType',
+    frontExample: '歌星们在那里演出，场场爆满，座无虚席。'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'coverType'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'defType'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'examplesType',
+    frontExample: '外婆老是语重心长地教我要做一个有贡献力量的人。'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'examplesType',
+    frontExample: '老师语重心长地教导我们长大要为祖国做贡献。'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'coverType'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'defType'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'examplesType',
+    frontExample: '成长，不在是那刚拱出地面怯生生的嫩芽，它已经成为狂风暴雨中的娇艳的花朵。成长，意味从此不再留恋雨后的七彩虹云，而要脚踏实地地去奋斗!在成长的路程里，难免会有些牺牲。但我相信，我不会退缩，不会后悔。'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'examplesType',
+    frontExample: '昨天一场狂风暴雨，吓得小孩连连惊叫。'
+  }
+]
+item - pre {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [
+    '今天参加会议的人很多，可以说是座无虚席。',
+    '音乐会那天，音乐厅里座无虚席。',
+    '使教堂座无虚席总是一个教士最难完成的任务。',
+    '当我们本地的球队争夺联赛杯时，场内座无虚席。',
+    '中国杂技团在加拿大的每场演出不仅座无虚席，而且还得增加数以百计的临时座位。',
+    '讲座吸引了华南理工大学的莘莘学子，座无虚席。',
+    '这部电影刚一上映，电影票就抢售一空，场内座无虚席。',
+    '歌星们在那里演出，场场爆满，座无虚席。',
+    '今天的劳模报告会，大礼堂里座无虚席。',
+    '这部电影十分好看，离开演还有十分钟，放映厅内就已经座无虚席了。'
+  ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+item {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [ '当我们本地的球队争夺联赛杯时，场内座无虚席。', '使教堂座无虚席总是一个教士最难完成的任务。' ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+in -item {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [ '当我们本地的球队争夺联赛杯时，场内座无虚席。', '使教堂座无虚席总是一个教士最难完成的任务。' ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+in -item {
+  _id: 'words/14663810639',
+  _key: '14663810639',
+  _rev: '_d7nuOwG--_',
+  chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 1.7000000000000002,
+  englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+  examples: [ '当我们本地的球队争夺联赛杯时，场内座无虚席。' ],
+  interval: 1,
+  repetition: 0,
+  word: '座无虚席'
+}
+item - pre {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [
+    '他这些语重心长的话，深深地打动了我的心。',
+    '老师语重心长地嘱咐同学们，上了中学更要努力学习。',
+    '老师的话语重心长，包含着对我们的殷切希望。',
+    '他语重心长地告诫我要好好学习。',
+    '老师语重心长的话语，同学们永记不忘。',
+    '每当我犯错误的时候，爸爸妈妈总是语重心长的批评我。',
+    '他那些语重心长、动人心弦的话，使我不禁泪如雨下。',
+    '每每和爸爸交谈时，他对我说话总是语重心长。',
+    '外婆老是语重心长地教我要做一个有贡献力量的人。',
+    '她这番语重心长的谈话，我们应该铭记在心。',
+    '我犯了错，妈妈语重心长的教导我。',
+    '老师的这一番谈话，语重心长，发人深省。',
+    '妈妈语重心长地劝导我要好好学习。',
+    '妈妈摸着我的头，语重心长地教我做人的道理。',
+    '我犯了错误，妈妈语重心长的教育我。',
+    '老师语重心长地教我们怎样学习。',
+    '老师总是语重心长地叫我把字写好，过好生字关。',
+    '老师语重心长地教导我们长大要为祖国做贡献。',
+    '爸爸语重心长地说：“你以后要走怎样的路，自己好好掂量掂量吧！”。',
+    '老师语重心长的话语，同学们终身难忘。'
+  ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+item {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [ '爸爸语重心长地说：“你以后要走怎样的路，自己好好掂量掂量吧！”。', '老师的话语重心长，包含着对我们的殷切希望。' ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+in -item {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [ '爸爸语重心长地说：“你以后要走怎样的路，自己好好掂量掂量吧！”。', '老师的话语重心长，包含着对我们的殷切希望。' ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+in -item {
+  _id: 'words/14663810602',
+  _key: '14663810602',
+  _rev: '_d7nuOwK--_',
+  chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+  dueDate: '2022-03-31T10:47:43.899Z',
+  efactor: 2.2,
+  englishDefs: [
+    'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+  ],
+  examples: [ '爸爸语重心长地说：“你以后要走怎样的路，自己好好掂量掂量吧！”。' ],
+  interval: 1,
+  repetition: 0,
+  word: '语重心长'
+}
+item - pre {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [
+    '突然一阵狂风暴雨，天顿时灰暗下来。',
+    '海燕在狂风暴雨中勇敢地飞翔。',
+    '今天真是白日见鬼，倒霉极了，刚出门就遇到了狂风暴雨，淋了个落汤鸡，事还没办成。',
+    '春天和风细雨，夏天狂风暴雨。',
+    '昨天一场狂风暴雨，吓得小孩连连惊叫。',
+    '他们冒着狂风暴雨，连夜把这个十万火急的通知送到了抗洪前线。',
+    '陈老师是从革命斗争的狂风暴雨中走过来的老党员。',
+    '这棵大树屹立在山头，勇敢地面对狂风暴雨，毫无畏惧。',
+    '不管是狂风暴雨，不管是惊涛骇浪，你们一定要把战斗的旗帜指向共产主义啊！',
+    '小草不择地势，不怕狂风暴雨，不畏严寒酷暑，不管条件怎样恶劣，它都顽强地生长着，默默无闻地装点着大自然。',
+    '愿你是航船，在生活的海洋里乘风破浪；愿你是水晶，永远保持一颗纯洁善良的心；愿你是雄鹰，经得起狂风暴雨的考验。',
+    '愿你是雄鹰，经得起生活中狂风暴雨的考验。',
+    '我在夏天里耕耘，因为一份期待。我用我的微笑等待着夏日的风雨，守候这片土地，不管这天气是狂风暴雨还是烈日炎炎，用晶莹的汗水守护干涸的大地，用坚毅写下等待的诗篇。',
+    '狂风暴雨，是我伤心时的泪水和无奈的话语，无论你做什么，都希望你能珍惜你自己！因',
+    '不要畏狂风暴雨，只要你有信念，风雨只是泥丸。',
+    '比这天气还要糟糕。或许是因为心情，我竟喜欢上了这狂风暴雨。',
+    '在革命的狂风暴雨下的腐败王朝已濒临摇摇欲坠的状态。',
+    '我幻想着偶尔，一定有风雨雷电将她袭击，却听到有人说，大海有这么博大的心怀，一定会从容面对，把嘶吼的雷电迅速埋藏在心底，把狂暴的风雨容进自己的血液里，变成了大海里的一滴，让那狂风暴雨都成为自己的好朋友。',
+    '当年他年轻气盛，全家大小都被他弄得惶惶恐恐的，生怕会惹来狂风暴雨。',
+    '成长，不在是那刚拱出地面怯生生的嫩芽，它已经成为狂风暴雨中的娇艳的花朵。成长，意味从此不再留恋雨后的七彩虹云，而要脚踏实地地去奋斗!在成长的路程里，难免会有些牺牲。但我相信，我不会退缩，不会后悔。'
+  ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+item {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [ '在革命的狂风暴雨下的腐败王朝已濒临摇摇欲坠的状态。', '春天和风细雨，夏天狂风暴雨。' ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+in -item {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [ '在革命的狂风暴雨下的腐败王朝已濒临摇摇欲坠的状态。', '春天和风细雨，夏天狂风暴雨。' ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+in -item {
+  _id: 'words/14663810609',
+  _key: '14663810609',
+  _rev: '_d7nuOw6--_',
+  chineseDef: '见“暴风骤雨”。',
+  dueDate: '2022-03-31T10:47:43.898Z',
+  efactor: 2.66,
+  englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+  examples: [ '在革命的狂风暴雨下的腐败王朝已濒临摇摇欲坠的状态。' ],
+  interval: 1,
+  repetition: 1,
+  word: '狂风暴雨'
+}
+final words [
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'coverType'
+  },
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'defType'
+  },
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'examplesType',
+    frontExample: '使教堂座无虚席总是一个教士最难完成的任务。'
+  },
+  {
+    _id: 'words/14663810639',
+    _key: '14663810639',
+    _rev: '_d7nuOwG--_',
+    chineseDef: '座位没有空着的。形容观众、听众或出席的人很多。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 1.7000000000000002,
+    englishDefs: [ 'lit. a banquet with no empty seats', 'capacity crowd' ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '座无虚席',
+    type: 'examplesType',
+    frontExample: '当我们本地的球队争夺联赛杯时，场内座无虚席。'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'coverType'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'defType'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'examplesType',
+    frontExample: '老师的话语重心长，包含着对我们的殷切希望。'
+  },
+  {
+    _id: 'words/14663810602',
+    _key: '14663810602',
+    _rev: '_d7nuOwK--_',
+    chineseDef: '言辞诚恳，情意深长。［近］苦口婆心。',
+    dueDate: '2022-03-31T10:47:43.899Z',
+    efactor: 2.2,
+    englishDefs: [
+      'meaningful and heartfelt words (idiom); sincere and earnest wishes'
+    ],
+    examples: [],
+    interval: 1,
+    repetition: 0,
+    word: '语重心长',
+    type: 'examplesType',
+    frontExample: '爸爸语重心长地说：“你以后要走怎样的路，自己好好掂量掂量吧！”。'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'coverType'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'defType'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'examplesType',
+    frontExample: '春天和风细雨，夏天狂风暴雨。'
+  },
+  {
+    _id: 'words/14663810609',
+    _key: '14663810609',
+    _rev: '_d7nuOw6--_',
+    chineseDef: '见“暴风骤雨”。',
+    dueDate: '2022-03-31T10:47:43.898Z',
+    efactor: 2.66,
+    englishDefs: [ 'howling wind and torrential rain (idiom)' ],
+    examples: [],
+    interval: 1,
+    repetition: 1,
+    word: '狂风暴雨',
+    type: 'examplesType',
+    frontExample: '在革命的狂风暴雨下的腐败王朝已濒临摇摇欲坠的状态。'
+  }
+]
+[11ty] Writing _site/data.json from ./data.liquid
+[11ty] Writing _site/index.html from ./index.html (liquid)
+[11ty] Copied 2 files / Wrote 2 files in 1.37 seconds (v1.0.0)
 [11ty] Watching…
 [Browsersync] Access URLs:
  ------------------------------------
-    Local: http://localhost:8081
- External: http://158.247.193.21:8081
+    Local: http://localhost:8080
+ External: http://158.247.193.21:8080
  ------------------------------------
 [Browsersync] Serving files from: _site
-[
-  GoogleSpreadsheetRow {
-    _sheet: GoogleSpreadsheetWorksheet {
-      _spreadsheet: [GoogleSpreadsheet],
-      _headerRowIndex: 1,
-      _rawProperties: [Object],
-      _cells: [],
-      _rowMetadata: [],
-      _columnMetadata: [],
-      headerValues: [Array]
-    },
-    _rowNumber: 2,
-    _rawData: [ '无缘无故' ],
-    '专心致志': [Getter/Setter]
-  },
-  GoogleSpreadsheetRow {
-    _sheet: GoogleSpreadsheetWorksheet {
-      _spreadsheet: [GoogleSpreadsheet],
-      _headerRowIndex: 1,
-      _rawProperties: [Object],
-      _cells: [],
-      _rowMetadata: [],
-      _columnMetadata: [],
-      headerValues: [Array]
-    },
-    _rowNumber: 3,
-    _rawData: [ '语重心长' ],
-    '专心致志': [Getter/Setter]
-  },
-  GoogleSpreadsheetRow {
-    _sheet: GoogleSpreadsheetWorksheet {
-      _spreadsheet: [GoogleSpreadsheet],
-      _headerRowIndex: 1,
-      _rawProperties: [Object],
-      _cells: [],
-      _rowMetadata: [],
-      _columnMetadata: [],
-      headerValues: [Array]
-    },
-    _rowNumber: 4,
-    _rawData: [ '狂风暴雨' ],
-    '专心致志': [Getter/Setter]
-  },
-  GoogleSpreadsheetRow {
-    _sheet: GoogleSpreadsheetWorksheet {
-      _spreadsheet: [GoogleSpreadsheet],
-      _headerRowIndex: 1,
-      _rawProperties: [Object],
-      _cells: [],
-      _rowMetadata: [],
-      _columnMetadata: [],
-      headerValues: [Array]
-    },
-    _rowNumber: 5,
-    _rawData: [ '勃勃生机' ],
-    '专心致志': [Getter/Setter]
-  },
-  GoogleSpreadsheetRow {
-    _sheet: GoogleSpreadsheetWorksheet {
-      _spreadsheet: [GoogleSpreadsheet],
-      _headerRowIndex: 1,
-      _rawProperties: [Object],
-      _cells: [],
-      _rowMetadata: [],
-      _columnMetadata: [],
-      headerValues: [Array]
-    },
-    _rowNumber: 6,
-    _rawData: [ '座无虚席' ],
-    '专心致志': [Getter/Setter]
-  },
-  GoogleSpreadsheetRow {
-    _sheet: GoogleSpreadsheetWorksheet {
-      _spreadsheet: [GoogleSpreadsheet],
-      _headerRowIndex: 1,
-      _rawProperties: [Object],
-      _cells: [],
-      _rowMetadata: [],
-      _columnMetadata: [],
-      headerValues: [Array]
-    },
-    _rowNumber: 7,
-    _rawData: [ '意想不到' ],
-    '专心致志': [Getter/Setter]
-  }
-]
-[11ty] Serverless (onrequest): / (1735ms)
+
+   ┌─────────────────────────────────────────────────┐
+   │                                                 │
+   │   ◈ Server now ready on http://localhost:8888   │
+   │                                                 │
+   └─────────────────────────────────────────────────┘
+
