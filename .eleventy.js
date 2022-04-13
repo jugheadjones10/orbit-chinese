@@ -9,7 +9,6 @@ module.exports = function(eleventyConfig) {
   // Copy `img/` to `_site/img`
   eleventyConfig.addPassthroughCopy("big.css");
   eleventyConfig.addPassthroughCopy("big.js");
-  eleventyConfig.addPassthroughCopy("load-test.js");
   eleventyConfig.addPassthroughCopy("supermemo.js");
-  eleventyConfig.addPassthroughCopy("shared/fisher-yates-shuffle");
+  eleventyConfig.addPassthroughCopy("shared/project-utils");
 };

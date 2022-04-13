@@ -13,7 +13,7 @@ addEventListener("load", () => {
       this.back = this.slide.querySelector(".slide__back")
       this.gotIt = this.slide.querySelector(".slide__got-it")
       this.noGotIt = this.slide.querySelector(".slide__no-got-it")
-      // this.slideWrapper = this.slide.querySelector(".slide__wrapper")
+      this.slideWrapper = this.slide.querySelector(".slide__wrapper")
 
       this.type = this.slide.dataset.slideType
       this.word = this.slide.dataset.word
@@ -97,7 +97,7 @@ addEventListener("load", () => {
     }
 
     setClickListeners(){
-      this.slide.addEventListener("click", onClickSlideContainer.bind(this));
+      this.slideWrapper.addEventListener("click", onClickSlideContainer.bind(this));
       this.gotIt.addEventListener("click", onClickGotIt.bind(this));
       this.noGotIt.addEventListener("click", onClickNoGotIt.bind(this));
 
@@ -117,6 +117,7 @@ addEventListener("load", () => {
           batchUpdate()
         }
         this.correct = true
+        this.flip()
         forward()
       }
 
@@ -130,6 +131,7 @@ addEventListener("load", () => {
           batchUpdate()
         }
         this.correct = false
+        this.flip()
         forward()
       }
     }

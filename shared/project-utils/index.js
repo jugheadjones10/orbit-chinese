@@ -1,4 +1,4 @@
-export default function fisherYatesShuffle(array){
+export function fisherYatesShuffle(array){
   var m = array.length, t, i;
   while (m) {
     i = Math.floor(Math.random() * m--);

@@ -9,12 +9,8 @@
     <script async src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <!-- module scripts are deferred by default -->
     <script type="module" src="big.js"></script>
-    <script type="module" src="load-test.js"></script>
-    <script>
-      console.log("GGGG")
-    </script>
   </head>
-  <body class="light">
+  <body>
     {% for row in words.macroMetaRows %}
 
     {% if row.type == "coverType" %}
@@ -27,7 +23,11 @@
       data-key="{{ row._key }}"
       data-word="{{ row.word }}">
       <div class="slide__wrapper"> 
-      <div class="slide__front">{{ row.word }}</div>
+      <div class="slide__front">
+        <div class="slide__word-container">
+          {{ row.word }}
+        </div>
+      </div>
       <div class="slide__back">
         <div class="back-heading">Definition</div>
         <ul>
@@ -125,6 +125,7 @@
     <div class="slide">
       <div class="slide__front">LAST SLIDE</div>
       <div class="slide__back">f</div>
+      <div class="slide__wrapper"></div>
       <div class="slide__rating-row">
         <div class="slide__no-got-it">Didn't got it</div>
         <div class="slide__got-it">Got it</div>

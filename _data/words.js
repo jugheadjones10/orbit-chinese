@@ -1,22 +1,5 @@
-const { GoogleSpreadsheet } = require("google-spreadsheet");
-const googleCreds = require("../google-credentials.json");
 require('dotenv').config()
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
-async function getRows(){
-  const doc = new GoogleSpreadsheet("12ACZR7Wfd2qlFvz_8RB18Y_tr4BrzB5vCB2MBNUugVI");
-  await doc.useServiceAccountAuth(googleCreds);
-  await doc.loadInfo();
-  const sheet = doc.sheetsByTitle["Sheet1"];
- const rows = await sheet.getRows();
-  console.log(rows)
-  return rows.map(x => {
-    return {
-      word: x["_rawData"][0],
-      meaning: "Hey my name is YJ"
-    }
-  })
-}
 
 async function getMacroMetaRows(){
   
@@ -24,7 +7,7 @@ async function getMacroMetaRows(){
 
 	const body = {
 		bindVars: {
-      username: "fucker"
+      username: "fucker2"
 		}
 	}
 
@@ -37,25 +20,21 @@ async function getMacroMetaRows(){
     body: JSON.stringify(body)
   })
     .then(res => res.json())
-    .then(res => Promise.all([import("fisher-yates-shuffle"), res]))
-    .then(([ { default: fisherYatesShuffle }, res]) => {
-      console.log("response", res)
-      console.log("RESULTS", res.result)
+    .then(res => Promise.all([import("project-utils"), res]))
+    .then(([ { fisherYatesShuffle }, res]) => {
 
       var finalWords = []
 
       res.result.forEach(item => {
 
-        // console.log("item - pre", item)
         var examples = fisherYatesShuffle(item.examples).slice(0, 2) 
         item.examples = examples
         var arrayCopy = [...examples]
-        // console.log("item", item)
+        console.log("item", item)
 
         const array = ["coverType", "defType", "examplesType", "examplesType"]
         array.forEach(type => {
           if(type === "examplesType"){
-            // console.log("in -item", item)
            finalWords.push({
               ...item,
               type: type,
@@ -72,6 +51,11 @@ async function getMacroMetaRows(){
 
       })
 
+      finalWords.forEach(x => {
+        console.log("WORD: ", x.word, "TYPE: ", x.type)
+      })
+      console.log("TOTAL COUNT: ", finalWords.length)
+
       // console.log("final words", finalWords)
       return fisherYatesShuffle(finalWords)
     })
@@ -79,6 +63,5 @@ async function getMacroMetaRows(){
 }
 
 module.exports = {
-  rows: getRows,
   macroMetaRows: getMacroMetaRows
 }
