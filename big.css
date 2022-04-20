@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  /* border: solid green; */
 }
 
 body {
@@ -11,10 +12,10 @@ body {
   /* display: flex; */
   /* align-items: center; */
   /* justify-content: center; */
+  /* border: solid blue; */
   height: 100%;
   width: 100%;
 }
-
 
 h1,
 h2,
@@ -40,6 +41,7 @@ em {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  /* border: solid brown; */
 }
 
 div.slide-container {
@@ -48,6 +50,7 @@ div.slide-container {
   position: absolute;
   left: 100%;
   top: 0;
+  /* border: solid red; */
 }
 
 .slide-container.show{
@@ -101,11 +104,7 @@ div.slide {
   flex-direction: row;
   overflow-x: hidden;
   overflow-y: hidden;
-  transition: flex-basis 0.5s;
-}
-
-div.slide--gridded .slide__wrapper{
-  /* flex-basis: 90%; */
+  /* border: solid purple; */
 }
 
 .slide__front{
@@ -122,39 +121,22 @@ div.slide--gridded .slide__wrapper{
 
   /* border: solid purple; */
 
-  transition: transform 0.5s, font-size 0.5s;
-  transform: translate(50%, calc(100%/9));
+  transition: transform 0.7s;
+  transform: translate(50%, calc(100%/18));
   position: relative;
 }
 
-.slide__word-container{
-  display: flex;
-  flex-wrap: nowrap;
-  /* border: solid blue; */
-  transform: scale(1);
-  transition: transform 0.5s; 
-}
-
-.slide--gridded .slide__word-container{
-  transform: scale(0.5)
-}
-
-
 div.slide--gridded .slide__front{
   transform: translate(0, 0);
-  /* font-size: max(80px, 12vw); */
 }
 
-.slide__front--exampleSentence, div.slide--gridded .slide__front--exampleSentence {
-  font-size: max(30px, 4.5vw);
-  align-items: unset;
-}
-
-.slide__front .text-container {
+.slide__sentences-container{
   /* border: solid pink; */
-  width: 50vw;
+  /* width: 50vw; */
   /* height: 200px; */
+  width: 100%;
   max-height: 100%;
+  font-size: max(30px, 4.5vw);
   overflow-y: scroll;
   padding-left: 20px;
   padding-right: 20px;
@@ -162,38 +144,24 @@ div.slide--gridded .slide__front{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  transition: top 0.5s, transform 0.5s;
+  transition: transform 0.7s;
 }
 
-
-
-/* There's something terribly wrong with the below rule */
-.slide__front--sentence, div.slide--gridded .slide__front--sentence{
-  flex-direction: column;
-  overflow-y: auto;
-  font-size: max(30px, 5vw);
+.slide__sentence{
+  margin-bottom: 20px;
 }
 
-.slide__front--sentence > div{
-  /* border: solid purple; */
-
-  flex-basis: 50%;
+.slide__word-container{
   display: flex;
-  width: 50vw;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  padding-left: 20px;
-  padding-right: 20px;
+  flex-wrap: nowrap;
+  /* border: solid blue; */
+  transform: scale(1);
+  transition: transform 0.7s; 
 }
 
-/* div.slide--gridded .slide__front{ */
-/*   font-size: max(80px, 10vw); */
-/* } */
-
-/* div.slide--gridded .slide__front--medium{ */
-/*   font-size: 4vw; */
-/* } */
+.slide--gridded .slide__word-container{
+  transform: scale(0.5)
+}
 
 .slide__back{
   flex: 1 0 50%;
@@ -201,15 +169,15 @@ div.slide--gridded .slide__front{
   padding-top: 50px;
   padding-left: 1.2vw;
   padding-right: 1.2vw;
-  overflow-y: auto;
+  overflow-y: scroll;
   border-left: solid;
   border-bottom: solid;
-  transform: translateX(100%);
-  transition: transform 0.5s, border-bottom 0.5s;
+  transform: translate(100%, 0);
+  transition: transform 0.7s, border-bottom 0.7s;
 }
 
 div.slide--gridded .slide__back{
-  transform: translateX(0);
+  transform: translate(0, 0);
   border-bottom: 0;
 }
 
@@ -220,8 +188,9 @@ div.slide--gridded .slide__back{
   display: grid;
   grid-template-columns: 50% 50%;
   transform: translateY(100%);
-  transition: transform 0.5s;
+  transition: transform 0.7s;
   border-top: solid;
+  background: white;
 }
 
 .slide--gridded .slide__rating-row{
@@ -260,30 +229,24 @@ div.slide--gridded .slide__back{
 
 @media (max-width: 768px) {
 
-  .slide--gridded .slide__front .text-container {
-    transform: translateY(0%);
-    top: 5%;
-  }
-
   .slide__wrapper{
     flex-direction: column;
     min-height: 0;
   }
 
-  div.slide__front{
-    border-right: solid;
+  .slide__front{
+    transform: translate(0, calc(100% * 11 / 18));
   }
 
-  div.slide--gridded .slide__front{
+  .slide--gridded .slide__word-container{
+    transform: scale(1);
+  }
+
+  .slide__back{
+    transform: translate(0, calc(100% * 11 / 9));
+    border-left: 0;
     border-bottom: 0;
-  }
-
-  .slide__front .text-container {
-    width: 75vw;
-  }
-
-  .slide__front--sentence > div{
-    width: 75vw;
+    border-top: solid;
   }
 
 }
@@ -294,31 +257,11 @@ div.slide--gridded .slide__back{
 
 .back-word-answer {
   font-weight: 800;
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .back-word-answer > span{
   background-color: yellow;
-}
-
-/* .slide--gridded .slide__front, .slide--gridded .slide_back{ */
-/*   display: flex; */
-/*   align-items: center; */
-/* } */
-
-div.imageText {
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-/* normally not good, but ok in context of full screen directional navigation */
-.talk-mode .slide:focus {
-  outline: 0;
-}
-
-div.slide > img:only-child,
-div.slide > canvas:only-child,
-div.slide > video:only-child {
-  width: 100%;
 }
 
 .hidden-char{

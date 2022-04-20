@@ -12,18 +12,18 @@ async function handler(event) {
   });
 
   try {
-    let [page] = await elev.getOutput();
 
-    // If you want some of the data cascade available in `page.data`, use `eleventyConfig.dataFilterSelectors`.
-    // Read more: https://www.11ty.dev/docs/config/#data-filter-selectors
+    let [page] = await elev.getOutput();
+    let html = page.content;
 
     return {
      statusCode: 200,
       headers: {
-        "Content-Type": "text/html; charset=UTF-8",
+       "Content-Type": "text/html; charset=UTF-8",
       },
-      body: page.content,
+      body: html
     };
+
   } catch (error) {
     // Only console log for matching serverless paths
     // (otherwise you’ll see a bunch of BrowserSync 404s for non-dynamic URLs during --serve)
@@ -44,12 +44,4 @@ async function handler(event) {
   }
 }
 
-// Choose one:
-// * Runs on each request: AWS Lambda (or Netlify Function)
-// * Runs on first request only: Netlify On-demand Builder
-//   (don’t forget to `npm install @netlify/functions`)
-
 exports.handler = handler;
-
-//const { builder } = require("@netlify/functions");
-//exports.handler = builder(handler);

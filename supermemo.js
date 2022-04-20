@@ -1,3 +1,5 @@
+import { DateTime } from 'https://esm.run/luxon'
+
 export default function supermemo(item, grade){
   let nextInterval
   let nextRepetition
@@ -24,9 +26,13 @@ export default function supermemo(item, grade){
 
   if (nextEfactor < 1.3) nextEfactor = 1.3;
 
+  try{
   item.interval = nextInterval
   item.repetition = nextRepetition
   item.efactor = nextEfactor
-  item.dueDate = dayjs(Date.now()).add(nextInterval, 'day').toISOString();
+  item.dueDate = DateTime.utc().plus({ days: 1}).toISO()
   delete item.grade
+  }catch(e){
+    console.log("Dayjs error", e)
+  }
 }

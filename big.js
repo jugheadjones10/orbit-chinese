@@ -51,12 +51,10 @@ addEventListener("load", () => {
       if(this.type == "examplesType"){
 
         try{
-          const exampleEl = this.front.querySelector(".text-container")
+          const exampleEl = this.front.querySelector(".slide__sentences-container")
           // const exampleEl = this.front.firstChild
           // For fucks sake I don't get why firstChild doesn't return the same thing.
           const exampleSentence = exampleEl.innerText
-          console.log("example element", JSON.stringify(exampleEl))
-          console.log("EXAMPLE SEN", exampleSentence)
           // console.log("key ", this.key)
           exampleEl.innerHTML = ""
 
@@ -144,6 +142,9 @@ addEventListener("load", () => {
     return new SlideDiv(slide, pc, _i)
   });
 
+  console.log("Printing slides")
+  slideDivs.forEach(x => console.log(x.word))
+
   function batchUpdate(){
     const results = {}
 
@@ -171,6 +172,13 @@ addEventListener("load", () => {
       supermemo(value, value.grade)
     }
     console.log("After supermemo", JSON.stringify(tempStore))
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    console.log("BUILD DATA IN BIG.JS", JSON.stringify(buildData))
+    tempStore["username"] = username
+    tempStore["IANA"] = buildData["IANA"]
+    tempStore["email"] = buildData["email"]
 
     fetch(
       'http://158.247.193.21:8888/.netlify/functions/onpost',
@@ -211,6 +219,7 @@ addEventListener("load", () => {
     big.current = n;
     let sc = slideDivs[n].sc,
       slide = slideDivs[n].slide;
+    console.log("CURRENT SLIDE", slideDivs[n].word)
 
     for (let slideDiv of slideDivs) {
       if(slideDiv._i === prevI){
@@ -255,3 +264,4 @@ function parseHash() {
 function ce(type, className = "") {
   return Object.assign(document.createElement(type), { className });
 }
+
